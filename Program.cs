@@ -11,12 +11,12 @@ namespace касательные
         static Random rnd = new Random();
         static double f(double x)
         {
-            double f = 2 * x * x + Math.Pow(Math.Cos(x), 2);
+            double f = 2 * x * x + x + Math.Pow(Math.Cos(x), 2);
             return f;
         }
         static double f_der(double x)
         {
-            return 4*x-Math.Sin(2*x);
+            return 4*x+1-Math.Sin(2*x);
         }
         static double Xmin(double a, double b)
         {
@@ -33,7 +33,7 @@ namespace касательные
             d = 0.0000001;
             e = 0.000001;
             x = rnd.NextDouble()+rnd.NextDouble()-1;
-            while (Math.Abs(f(Xmin(a, b))-tang(x,a)) >= e)
+            while (Math.Abs(f(Xmin(a, b))-tang(x,a)) >= e || Math.Abs(f(Xmin(a, b)) - tang(x, b)) >= e)
             {
                 if (f_der(Xmin(a, b))<0)
                     a = Xmin(a, b);
